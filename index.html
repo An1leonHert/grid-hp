@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<title>GRID | 埼玉県北足立郡伊奈町 スポーツカー専門店</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080808;
+  --bg2: #0f0f0f;
+  --bg3: #1a1a1a;
+  --red: #c8c8c8;
+  --red2: #ffffff;
+  --white: #f0f0f0;
+  --gray: #777;
+  --line: rgba(255,255,255,0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 64px;
+  background: rgba(8,8,8,0.95);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; letter-spacing: 0.12em;
+  color: var(--white); text-decoration: none;
+}
+.nav-logo span { color: var(--gray); }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  font-size: 11px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gray);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--white); text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.3); padding: 9px 22px;
+  transition: all 0.2s;
+}
+.nav-cta:hover { background: var(--white); color: var(--bg); }
+
+/* ===== HERO ===== */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  position: relative; overflow: hidden;
+  padding: 0 60px 80px;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, #111 0%, #050505 60%);
+}
+/* Diagonal stripe */
+.hero-stripe {
+  position: absolute;
+  top: -100px; right: -60px;
+  width: 320px; height: 110vh;
+  background: var(--white);
+  transform: rotate(-8deg);
+  transform-origin: top right;
+  opacity: 0.025;
+}
+.hero-stripe2 {
+  position: absolute;
+  top: -100px; right: 160px;
+  width: 1px; height: 110vh;
+  background: rgba(255,255,255,0.15);
+  transform: rotate(-8deg);
+  transform-origin: top right;
+  opacity: 1;
+}
+
+/* Grid lines */
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.hero-tag {
+  position: absolute; top: 100px; right: 60px;
+  text-align: right;
+  opacity: 0; animation: fadeIn 1s 1.2s forwards;
+}
+.hero-tag-stars {
+  display: flex; justify-content: flex-end; gap: 4px;
+  margin-bottom: 4px;
+}
+.star { color: var(--white); font-size: 14px; }
+.hero-tag-score {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px; line-height: 1; color: var(--white);
+}
+.hero-tag-count { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; }
+
+.hero-content { position: relative; z-index: 2; }
+
+.hero-eyebrow {
+  font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--gray); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+  opacity: 0; animation: slideRight 0.8s 0.2s forwards;
+}
+.hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--gray); }
+
+h1.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(72px, 11vw, 160px);
+  line-height: 0.9; letter-spacing: 0.04em;
+  margin-bottom: 24px;
+  opacity: 0; animation: slideRight 0.8s 0.35s forwards;
+}
+h1.hero-title span { color: var(--gray); display: block; }
+
+.hero-sub {
+  font-size: 14px; color: var(--gray); line-height: 1.9;
+  max-width: 500px; margin-bottom: 48px;
+  opacity: 0; animation: slideRight 0.8s 0.5s forwards;
+}
+
+.hero-btns {
+  display: flex; gap: 16px;
+  opacity: 0; animation: slideRight 0.8s 0.65s forwards;
+}
+.btn-primary {
+  background: var(--white); color: var(--bg);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 16px 36px; text-decoration: none; border: none; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: all 0.2s;
+}
+.btn-primary:hover { background: var(--gray); color: var(--white); transform: translateX(4px); }
+.btn-secondary {
+  border: 1px solid rgba(255,255,255,0.2); color: var(--white);
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 16px 36px; text-decoration: none;
+  display: inline-flex; align-items: center;
+  transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--white); }
+
+.hero-stats {
+  position: absolute; bottom: 80px; right: 60px;
+  display: flex; gap: 40px;
+  opacity: 0; animation: fadeIn 1s 1s forwards;
+  z-index: 2;
+}
+.hero-stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px; color: var(--white); line-height: 1;
+}
+.hero-stat-num span { color: var(--gray); }
+.hero-stat-label { font-size: 10px; color: var(--gray); letter-spacing: 0.14em; text-transform: uppercase; }
+
+/* ===== TICKER ===== */
+.ticker {
+  background: var(--bg3); padding: 10px 0; overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.ticker-inner {
+  display: flex; gap: 80px; white-space: nowrap;
+  animation: ticker 20s linear infinite;
+  width: max-content;
+}
+.ticker-item {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px; letter-spacing: 0.16em;
+  display: flex; align-items: center; gap: 16px;
+}
+.ticker-dot { width: 6px; height: 6px; background: rgba(255,255,255,0.4); border-radius: 50%; }
+
+/* ===== SECTION BASE ===== */
+section { padding: 100px 60px; }
+.section-label {
+  font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--gray); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-label::before { content: ''; width: 24px; height: 1px; background: var(--gray); }
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 6vw, 80px);
+  letter-spacing: 0.06em; line-height: 0.95;
+  margin-bottom: 60px;
+}
+
+/* ===== INVENTORY ===== */
+#inventory { background: var(--bg); }
+.inv-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 48px;
+}
+.inv-count {
+  font-size: 12px; color: var(--gray); letter-spacing: 0.1em;
+}
+.inv-link {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--white); text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+  transition: gap 0.2s;
+}
+.inv-link:hover { gap: 14px; }
+
+.cars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.car-card {
+  background: var(--bg3);
+  position: relative; overflow: hidden;
+  text-decoration: none; color: inherit;
+  display: block;
+}
+.car-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+  z-index: 1;
+}
+.car-img {
+  width: 100%; aspect-ratio: 4/3;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.6s ease;
+  background: #111;
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+  filter: none;
+}
+.car-card:hover .car-img { transform: scale(1.06); }
+
+.car-info {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 20px; z-index: 2;
+}
+.car-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15); color: var(--white);
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 3px 8px; margin-bottom: 10px;
+  backdrop-filter: blur(4px);
+}
+.car-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px; letter-spacing: 0.06em;
+  margin-bottom: 4px; line-height: 1.1;
+}
+.car-detail {
+  font-size: 10px; color: rgba(255,255,255,0.35);
+  line-height: 1.6; margin-top: 6px;
+  overflow: hidden; display: -webkit-box;
+  -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+}
+.car-spec { font-size: 11px; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; }
+.car-price {
+  position: absolute; top: 16px; right: 16px; z-index: 2;
+  background: rgba(8,8,8,0.85);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 8px 14px; text-align: right;
+}
+.car-price-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px; color: var(--white); line-height: 1;
+}
+.car-price-unit { font-size: 10px; color: var(--gray); }
+.car-arrow {
+  position: absolute; top: 16px; left: 16px; z-index: 2;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: scale(0.8);
+  transition: all 0.3s;
+}
+.car-card:hover .car-arrow { opacity: 1; transform: scale(1); }
+
+/* NEW badge */
+.car-new {
+  position: absolute; top: 56px; left: 16px; z-index: 2;
+  background: var(--white); color: var(--bg);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px; letter-spacing: 0.1em;
+  padding: 3px 8px;
+}
+
+/* Wide card */
+.car-card.wide { grid-column: span 2; }
+.car-card.wide .car-name { font-size: 28px; }
+
+/* ===== SERVICES ===== */
+#services { background: var(--bg2); border-top: 1px solid var(--line); }
+.services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+.service-item {
+  background: var(--bg3); padding: 40px 32px;
+  border: 1px solid var(--line);
+  transition: border-color 0.3s, background 0.3s;
+  position: relative; overflow: hidden;
+}
+.service-item::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: var(--white);
+  transition: width 0.4s;
+}
+.service-item:hover { background: #111; border-color: rgba(255,255,255,0.15); }
+.service-item:hover::after { width: 100%; }
+
+.service-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 52px; color: rgba(255,255,255,0.07);
+  line-height: 1; margin-bottom: 20px;
+  transition: color 0.3s;
+}
+.service-item:hover .service-num { color: rgba(255,255,255,0.18); }
+.service-icon { font-size: 24px; margin-bottom: 16px; }
+.service-name {
+  font-size: 15px; font-weight: 500; margin-bottom: 10px;
+  color: var(--white); letter-spacing: 0.04em;
+}
+.service-text { font-size: 12px; color: var(--gray); line-height: 1.85; }
+
+/* ===== ABOUT ===== */
+#about {
+  background: var(--bg);
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; padding: 0;
+}
+.about-left {
+  padding: 100px 60px;
+  border-right: 1px solid var(--line);
+}
+.about-right { padding: 100px 60px; background: var(--bg2); }
+.about-kv {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; margin-bottom: 48px;
+}
+.about-kv-item { background: var(--bg3); padding: 28px 24px; }
+.about-kv-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px; color: var(--white); line-height: 1;
+}
+.about-kv-num span { color: var(--gray); font-size: 24px; }
+.about-kv-label { font-size: 10px; color: var(--gray); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 4px; }
+
+.about-body { font-size: 13px; color: var(--gray); line-height: 2; }
+
+.about-table { width: 100%; border-collapse: collapse; margin-top: 32px; }
+.about-table tr { border-bottom: 1px solid var(--line); }
+.about-table td { padding: 14px 0; font-size: 12px; vertical-align: top; }
+.about-table td:first-child {
+  color: var(--gray); width: 110px; font-size: 10px;
+  letter-spacing: 0.12em; text-transform: uppercase; padding-top: 16px;
+}
+.about-table td:last-child { color: var(--gray); }
+
+/* ===== CONTACT ===== */
+#contact {
+  background: var(--bg2);
+  border-top: 1px solid var(--line);
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; padding: 0;
+}
+.contact-left { padding: 100px 60px; border-right: 1px solid var(--line); }
+.contact-right { padding: 100px 60px; }
+
+.contact-details { display: flex; flex-direction: column; gap: 32px; margin-top: 40px; }
+.contact-detail-label {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gray); margin-bottom: 6px;
+}
+.contact-detail-value { font-size: 16px; color: var(--white); font-weight: 400; }
+.contact-detail-sub { font-size: 11px; color: var(--gray); margin-top: 2px; }
+
+.contact-tel {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px; letter-spacing: 0.06em; color: var(--white);
+  line-height: 1; margin-top: 8px;
+}
+
+/* Map placeholder */
+.map-placeholder {
+  background: var(--bg3); height: 200px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line); margin-top: 32px;
+  position: relative; overflow: hidden;
+}
+.map-placeholder::before {
+  content: ''; position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(214,40,40,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214,40,40,0.04) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+.map-pin {
+  font-size: 32px; position: relative; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.map-pin span { font-size: 12px; color: var(--gray); letter-spacing: 0.1em; }
+
+/* Form */
+.contact-form { display: flex; flex-direction: column; gap: 0; }
+.form-group {
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.3s;
+}
+.form-group:focus-within { border-color: var(--white); }
+.form-group label {
+  display: block; font-size: 9px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gray); padding: 18px 0 0;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  display: block; width: 100%; background: none;
+  border: none; outline: none;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 14px; font-weight: 300; color: var(--white);
+  padding: 6px 0 18px; resize: none;
+}
+.form-group select option { background: var(--bg2); }
+.form-group textarea { min-height: 100px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+
+.btn-submit {
+  margin-top: 36px; background: var(--white); color: var(--bg);
+  border: none; cursor: pointer;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 18px 40px;
+  display: flex; align-items: center; gap: 12px;
+  width: 100%; justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-submit:hover { background: var(--gray); color: var(--white); }
+
+/* ===== NAV SNS アイコン ===== */
+.nav-sns-icon {
+  display: flex !important; align-items: center; justify-content: center;
+  width: 30px; height: 30px;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--gray) !important; transition: all 0.2s;
+}
+.nav-sns-icon:hover { border-color: var(--white) !important; color: var(--white) !important; }
+.nav-sns-icon:hover::after { display: none !important; }
+li:has(.nav-sns-icon) { display: flex; align-items: center; }
+
+/* ===== MAP EMBED ===== */
+.map-embed {
+  margin-top: 32px; position: relative; overflow: hidden;
+  border: 1px solid var(--line);
+}
+.map-open-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.04);
+  border-top: 1px solid var(--line);
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gray); text-decoration: none;
+  transition: all 0.2s;
+}
+.map-open-btn:hover { background: rgba(255,255,255,0.08); color: var(--white); }
+
+/* ===== SNS ===== */
+.sns-bar { display: flex; align-items: center; gap: 12px; margin-top: 32px; }
+.sns-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 22px; border: 1px solid rgba(255,255,255,0.15);
+  color: var(--white); text-decoration: none;
+  font-size: 12px; letter-spacing: 0.1em; transition: all 0.25s;
+}
+.sns-btn:hover { background: var(--white); color: var(--bg); border-color: var(--white); }
+.sns-btn.ig:hover { background: #e1306c; border-color: #e1306c; color: #fff; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: #050505; padding: 36px 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; border-top: 1px solid var(--line);
+}
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px; letter-spacing: 0.1em; color: var(--white);
+}
+.footer-logo span { color: var(--gray); }
+.footer-copy { font-size: 11px; color: var(--gray); letter-spacing: 0.06em; }
+.footer-right { display: flex; align-items: center; gap: 28px; }
+.footer-sns { display: flex; gap: 12px; }
+.footer-sns a {
+  width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gray); text-decoration: none; transition: all 0.25s;
+  flex-shrink: 0;
+}
+.footer-sns a:hover { border-color: var(--white); color: var(--white); }
+.footer-sns a.ig:hover { border-color: #e1306c; color: #e1306c; }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a {
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--white); }
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s, transform 0.7s;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ===== HAMBURGER MENU ===== */
+.nav-hamburger {
+  display: none;
+  flex-direction: column; justify-content: center; gap: 5px;
+  width: 40px; height: 40px; background: none; border: none; cursor: pointer;
+  padding: 6px;
+}
+.nav-hamburger span {
+  display: block; width: 100%; height: 1px;
+  background: var(--white); transition: all 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none; position: fixed; inset: 0; z-index: 99;
+  background: rgba(8,8,8,0.97);
+  backdrop-filter: blur(16px);
+  padding-top: 56px;
+}
+.mobile-menu.open { display: flex; align-items: center; justify-content: center; }
+.mobile-menu-inner {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0; width: 100%; padding: 32px 24px;
+}
+.mobile-menu-inner > a {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px; letter-spacing: 0.1em;
+  color: var(--white); text-decoration: none;
+  padding: 16px 0; border-bottom: 1px solid var(--line);
+  width: 100%; text-align: center; transition: color 0.2s;
+}
+.mobile-menu-inner > a:hover { color: var(--gray); }
+.mobile-menu-sns {
+  display: flex; gap: 16px; margin-top: 32px; margin-bottom: 16px;
+}
+.mobile-menu-sns a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 24px; border: 1px solid rgba(255,255,255,0.2);
+  color: var(--white); text-decoration: none;
+  font-size: 13px; letter-spacing: 0.08em; transition: all 0.2s;
+}
+.mobile-menu-sns a:hover { background: var(--white); color: var(--bg); }
+.mobile-menu-tel {
+  font-size: 18px !important; letter-spacing: 0.06em !important;
+  color: var(--gray) !important; margin-top: 8px;
+  border-bottom: none !important;
+  font-family: 'Noto Sans JP', sans-serif !important;
+}
+
+@media (max-width: 900px) {
+  .nav-hamburger { display: flex; }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  nav { padding: 0 16px; height: 56px; }
+  .nav-links, .nav-cta { display: none; }
+  section { padding: 56px 16px; }
+  #hero { padding: 0 16px 56px; min-height: 100svh; }
+  .hero-stats { display: none; }
+  .hero-tag { top: 68px; right: 16px; }
+  .hero-tag-score { font-size: 36px; }
+  h1.hero-title { font-size: clamp(52px, 13vw, 72px); }
+  .hero-sub { font-size: 13px; }
+  .hero-btns { flex-direction: column; gap: 10px; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; padding: 15px 24px; }
+
+  /* 在庫グリッド */
+  .cars-grid { grid-template-columns: 1fr; gap: 2px; }
+  .car-card.wide { grid-column: span 1; }
+  .car-card.wide .car-name { font-size: 22px; }
+  .car-img { aspect-ratio: 16/9; }
+  .car-name { font-size: 20px; }
+  .car-price-num { font-size: 22px; }
+  .car-arrow { display: none; }
+
+  /* サービス */
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .service-item { padding: 28px 20px; }
+  .service-num { font-size: 40px; }
+
+  /* 会社概要 */
+  #about { grid-template-columns: 1fr; padding: 0; }
+  .about-left { border-right: none; border-bottom: 1px solid var(--line); padding: 56px 16px; }
+  .about-right { padding: 56px 16px; }
+  .about-kv-num { font-size: 36px; }
+  .about-table td { font-size: 12px; }
+  .about-table td:first-child { width: 90px; font-size: 10px; }
+
+  /* お問い合わせ */
+  #contact { grid-template-columns: 1fr; padding: 0; }
+  .contact-left { border-right: none; border-bottom: 1px solid var(--line); padding: 56px 16px; }
+  .contact-right { padding: 56px 16px; }
+  .contact-tel { font-size: 32px; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .btn-submit { padding: 16px 24px; font-size: 13px; }
+  .map-embed iframe { height: 200px; }
+  .sns-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .sns-btn { width: 100%; justify-content: center; }
+
+  /* フッター */
+  footer { flex-direction: column; gap: 20px; text-align: center; padding: 32px 16px; }
+  .footer-right { flex-direction: column; align-items: center; gap: 16px; }
+  .footer-links { flex-wrap: wrap; justify-content: center; gap: 14px; }
+  .footer-sns { justify-content: center; }
+
+  /* その他 */
+  .hero-logo-img svg { height: 80px !important; }
+  .section-title { font-size: clamp(32px, 9vw, 56px); margin-bottom: 40px; }
+  .inv-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+
+@media (max-width: 480px) {
+  .services-grid { grid-template-columns: 1fr; }
+  h1.hero-title { font-size: clamp(44px, 14vw, 60px); }
+  .about-kv-num { font-size: 28px; }
+  .hero-tag { display: none; }
+}
+
+@media (hover: none) {
+  .car-card:hover .car-img { transform: none; }
+  .car-card:active { opacity: 0.85; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a href="#hero" class="nav-logo" style="display:flex;align-items:center;text-decoration:none;">
+    <svg height="38" viewBox="0 0 260 54" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible;">
+      <defs>
+        <linearGradient id="g1" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#d0d0d0"/>
+          <stop offset="45%" style="stop-color:#a8a8a8"/>
+          <stop offset="100%" style="stop-color:#686868"/>
+        </linearGradient>
+      </defs>
+      <g transform="skewX(-10)">
+        <text x="4" y="42" font-family="'Bebas Neue', Impact, sans-serif" font-size="50" font-weight="900" fill="url(#g1)" letter-spacing="3">GRID</text>
+      </g>
+      <text x="6" y="53" font-family="Georgia, 'Times New Roman', serif" font-size="9" font-style="italic" fill="#555" letter-spacing="0.3">Powered by S-plus co.,ltd</text>
+    </svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#inventory">在庫車両</a></li>
+    <li><a href="#services">サービス</a></li>
+    <li><a href="#about">会社情報</a></li>
+    <li><a href="#contact">お問い合わせ</a></li>
+    <!-- NAV SNS -->
+    <li>
+      <a href="https://www.instagram.com/matsuihidetoshi/" target="_blank" class="nav-sns-icon" title="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+      </a>
+    </li>
+    <li>
+      <a href="https://x.com/age01207" target="_blank" class="nav-sns-icon" title="X (Twitter)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+    </li>
+  </ul>
+  <a href="#contact" class="nav-cta">今すぐ問い合わせ</a>
+  <!-- ハンバーガーメニュー（スマホ用） -->
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<!-- スマホメニュー -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-inner">
+    <a href="#inventory" onclick="toggleMenu()">在庫車両</a>
+    <a href="#services" onclick="toggleMenu()">サービス</a>
+    <a href="#about" onclick="toggleMenu()">会社情報</a>
+    <a href="#contact" onclick="toggleMenu()">お問い合わせ</a>
+    <div class="mobile-menu-sns">
+      <a href="https://www.instagram.com/matsuihidetoshi/" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+        Instagram
+      </a>
+      <a href="https://x.com/age01207" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        X (Twitter)
+      </a>
+    </div>
+    <a href="tel:048-779-8836" class="mobile-menu-tel">
+      📞 048-779-8836
+    </a>
+  </div>
+
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-stripe"></div>
+  <div class="hero-stripe2"></div>
+
+  <div class="hero-tag">
+    <div class="hero-tag-stars">
+      <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+    </div>
+    <div class="hero-tag-score">4.9</div>
+    <div class="hero-tag-count">46件のレビュー</div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">埼玉県伊奈町 — スポーツカー専門</p>
+        <div class="hero-logo-img" style="opacity:0;animation:slideRight 0.8s 0.35s forwards;margin-bottom:24px;">
+      <svg height="120" viewBox="0 0 380 90" xmlns="http://www.w3.org/2000/svg" style="display:block;width:auto;max-width:100%;overflow:visible;">
+        <defs>
+          <linearGradient id="heroGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#e8e8e8"/>
+            <stop offset="40%" style="stop-color:#c0c0c0"/>
+            <stop offset="100%" style="stop-color:#707070"/>
+          </linearGradient>
+        </defs>
+        <g transform="skewX(-10)">
+          <text x="6" y="74" font-family="'Bebas Neue', Impact, sans-serif" font-size="80" font-weight="900" fill="url(#heroGrad)" letter-spacing="6">GRID</text>
+        </g>
+        <text x="10" y="88" font-family="Georgia, 'Times New Roman', serif" font-size="13" font-style="italic" fill="#555" letter-spacing="0.5">Powered by S-plus co.,ltd</text>
+      </svg>
+    </div>
+    <p class="hero-sub">
+      チェイサー・マーク II・クレスタを中心としたJZX系スポーツカー専門店。<br>
+      チューニング・エンジンスワップなど、ワンランク上の一台をご提案します。
+    </p>
+    <div class="hero-btns">
+      <a href="#inventory" class="btn-primary">
+        在庫を見る
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+      <a href="#contact" class="btn-secondary">お問い合わせ</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">17<span>台</span></div>
+      <div class="hero-stat-label">現在庫数</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">JZX<span>系</span></div>
+      <div class="hero-stat-label">専門車種</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">4.9<span>★</span></div>
+      <div class="hero-stat-label">顧客満足度</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <div class="ticker-item"><span class="ticker-dot"></span>チェイサー ツアラーV</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>マーク II ツアラーV</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>クレスタ ツアラーV</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>エンジンスワップ対応</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>スポーツカーチューニング</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>JZX100 / JZX110</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>全国陸送可能</div>
+    <!-- repeat for seamless loop -->
+    <div class="ticker-item"><span class="ticker-dot"></span>チェイサー ツアラーV</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>マーク II ツアラーV</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>クレスタ ツアラーV</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>エンジンスワップ対応</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>スポーツカーチューニング</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>JZX100 / JZX110</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>全国陸送可能</div>
+  </div>
+</div>
+
+<!-- INVENTORY -->
+<section id="inventory">
+  <div class="inv-header reveal">
+    <div>
+      <p class="section-label">Stock Vehicles</p>
+      <h2 class="section-title" style="margin-bottom:0;">在庫車両</h2>
+    </div>
+    <div style="text-align:right;">
+      <p class="inv-count" style="margin-bottom:8px;">全 17 台掲載中</p>
+      <a href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank" class="inv-link">
+        goo-netで全台確認
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+  </div>
+
+    <!-- VEHICLE_DATA_START -->
+  <div class="cars-grid">
+    <a class="car-card wide reveal" href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank">
+      <span class="car-arrow">→</span>
+      <div class="car-price"><div class="car-price-num">405</div><div class="car-price-unit">万円（本体400万）</div></div>
+      <img class="car-img" src="https://picture1.goo-net.com/7000540462/30260324/Q/70005404623026032400100.jpg" alt="チェイサー ツアラーV"
+           referrerpolicy="no-referrer" onerror="this.src='https://picture1.goo-net.com/7000540462/30260324/P/70005404623026032400100.jpg';this.style.background='#1a1a1a';this.onerror=null;" loading="lazy" decoding="async">
+      <div class="car-info">
+        <div class="car-name">チェイサー ツアラーV</div>
+        <div class="car-spec">1998 / 2500cc / 走行不明 / 車検2026年10月</div>
+        <div class="car-detail">純正五速 / サンルーフ ＢＲＩＤＥセミバケ / ＴＲＤフルスケールメーター / ＴＲＤタワーバー / ＴＲＤメンバーブレス フロント クニーズ フェンダー ク</div>
+      </div>
+    </a>
+    <a class="car-card reveal" href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank">
+      <span class="car-arrow">→</span>
+      <div class="car-price"><div class="car-price-num">480</div><div class="car-price-unit">万円（本体470万）</div></div>
+      <img class="car-img" src="https://picture1.goo-net.com/7000540462/30260219/Q/70005404623026021900200.jpg" alt="チェイサー ツアラーV"
+           referrerpolicy="no-referrer" onerror="this.src='https://picture1.goo-net.com/7000540462/30260219/P/70005404623026021900200.jpg';this.style.background='#1a1a1a';this.onerror=null;" loading="lazy" decoding="async">
+      <div class="car-info">
+        <div class="car-name">チェイサー ツアラーV</div>
+        <div class="car-spec">1999 / 2500cc / 走行不明 / 車検整備付</div>
+        <div class="car-detail">後期 純正５速ＭＴ サンルーフ ＴＲＤバージョン 寒冷地仕様 Ｐ１レーシングホイール</div>
+      </div>
+    </a>
+    <a class="car-card reveal" href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank">
+      <span class="car-arrow">→</span>
+      <div class="car-price"><div class="car-price-num">480</div><div class="car-price-unit">万円（本体465万）</div></div>
+      <img class="car-img" src="https://picture1.goo-net.com/7000540462/30260204/Q/70005404623026020400100.jpg" alt="チェイサー ツアラーV"
+           referrerpolicy="no-referrer" onerror="this.src='https://picture1.goo-net.com/7000540462/30260204/P/70005404623026020400100.jpg';this.style.background='#1a1a1a';this.onerror=null;" loading="lazy" decoding="async">
+      <div class="car-info">
+        <div class="car-name">チェイサー ツアラーV</div>
+        <div class="car-spec">1999 / 2500cc / 走行不明 / 車検2026年06月</div>
+        <div class="car-detail">後期 サンルーフ 修復歴なし 新品ＭＴミッション 新車ワンオーナー 記録簿すべてあり フロントスープラキャリパー ＴＲＤタワーバー 車高調</div>
+      </div>
+    </a>
+    <a class="car-card reveal" href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank">
+      <span class="car-arrow">→</span>
+      <div class="car-price"><div class="car-price-num">490</div><div class="car-price-unit">万円（本体475万）</div></div>
+      <img class="car-img" src="https://picture1.goo-net.com/7000540462/30260124/Q/70005404623026012400300.jpg" alt="チェイサー ツアラーV"
+           referrerpolicy="no-referrer" onerror="this.src='https://picture1.goo-net.com/7000540462/30260124/P/70005404623026012400300.jpg';this.style.background='#1a1a1a';this.onerror=null;" loading="lazy" decoding="async">
+      <div class="car-info">
+        <div class="car-name">チェイサー ツアラーV</div>
+        <div class="car-spec">1999 / 2500cc / 16.0万km / 車検整備付</div>
+        <div class="car-detail">後期 純正５速 サンルーフ ワンオーナー 純正フルエアロ ワークスベル ナルディステアリング ＲＡＹＳ ＶＯＬＫ ＲＡＣＩＮＧホイール 砲弾マフラー 車高調</div>
+      </div>
+    </a>
+    <a class="car-card reveal" href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank">
+      <span class="car-arrow">→</span>
+      <div class="car-price"><div class="car-price-num">640</div><div class="car-price-unit">万円（本体625万）</div></div>
+      <img class="car-img" src="https://picture1.goo-net.com/7000540462/30260124/Q/70005404623026012400200.jpg" alt="チェイサー ツアラーV"
+           referrerpolicy="no-referrer" onerror="this.src='https://picture1.goo-net.com/7000540462/30260124/P/70005404623026012400200.jpg';this.style.background='#1a1a1a';this.onerror=null;" loading="lazy" decoding="async">
+      <div class="car-info">
+        <div class="car-name">チェイサー ツアラーV</div>
+        <div class="car-spec">1999 / 2500cc / 9.0万km / 車検整備付</div>
+        <div class="car-detail">ＴＲＤスポーツ後期 サンルーフ 車高調 砲弾マフラー ＷＯＮＤＥＲフルエアロ ＷＯＲＫ ＺＲ７ １８インチ</div>
+      </div>
+    </a>
+    <a class="car-card reveal" href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank">
+      <span class="car-arrow">→</span>
+      <div class="car-price"><div class="car-price-num">430</div><div class="car-price-unit">万円（本体415万）</div></div>
+      <img class="car-img" src="https://picture1.goo-net.com/7000540462/30260124/Q/70005404623026012400100.jpg" alt="チェイサー ツアラーV"
+           referrerpolicy="no-referrer" onerror="this.src='https://picture1.goo-net.com/7000540462/30260124/P/70005404623026012400100.jpg';this.style.background='#1a1a1a';this.onerror=null;" loading="lazy" decoding="async">
+      <div class="car-info">
+        <div class="car-name">チェイサー ツアラーV</div>
+        <div class="car-spec">2001 / 2500cc / 走行不明 / 車検2028年01月</div>
+        <div class="car-detail">後期 サンルーフ 純正フルエアロ 社外ホイール 車高調</div>
+      </div>
+    </a>
+    <a class="car-card wide reveal" href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank">
+      <span class="car-arrow">→</span>
+      <div class="car-price"><div class="car-price-num">410</div><div class="car-price-unit">万円（本体400万）</div></div>
+      <img class="car-img" src="https://picture1.goo-net.com/7000540462/30251203/Q/70005404623025120300100.jpg" alt="チェイサー ツアラーV"
+           referrerpolicy="no-referrer" onerror="this.src='https://picture1.goo-net.com/7000540462/30251203/P/70005404623025120300100.jpg';this.style.background='#1a1a1a';this.onerror=null;" loading="lazy" decoding="async">
+      <div class="car-info">
+        <div class="car-name">チェイサー ツアラーV</div>
+        <div class="car-spec">1998 / 2500cc / 走行不明 / 車検2026年07月</div>
+        <div class="car-detail">サンルーフ ＷＯＲＫエモーションＣＲ至極 砲弾マフラー エキマニ ラジエーター インタークーラー 車高調 社外エアロ ＭＴスワップ</div>
+      </div>
+    </a>
+    <a class="car-card reveal" href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank">
+      <span class="car-arrow">→</span>
+      <div class="car-price"><div class="car-price-num">400</div><div class="car-price-unit">万円（本体390万）</div></div>
+      <img class="car-img" src="https://picture1.goo-net.com/7000540462/30251201/Q/70005404623025120100300.jpg" alt="チェイサー ツアラーV"
+           referrerpolicy="no-referrer" onerror="this.src='https://picture1.goo-net.com/7000540462/30251201/P/70005404623025120100300.jpg';this.style.background='#1a1a1a';this.onerror=null;" loading="lazy" decoding="async">
+      <div class="car-info">
+        <div class="car-name">チェイサー ツアラーV</div>
+        <div class="car-spec">1996 / 2500cc / 走行不明 / 車検整備付</div>
+        <div class="car-detail">サンルーフ 新品車高調 新品インタークーラー 社外エアロ 砲弾マフラー</div>
+      </div>
+    </a>
+    <a class="car-card reveal" href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank">
+      <span class="car-arrow">→</span>
+      <div class="car-price"><div class="car-price-num">380</div><div class="car-price-unit">万円（本体370万）</div></div>
+      <img class="car-img" src="https://picture1.goo-net.com/7000540462/30251201/Q/70005404623025120100100.jpg" alt="クレスタ"
+           referrerpolicy="no-referrer" onerror="this.src='https://picture1.goo-net.com/7000540462/30251201/P/70005404623025120100100.jpg';this.style.background='#1a1a1a';this.onerror=null;" loading="lazy" decoding="async">
+      <div class="car-info">
+        <div class="car-name">クレスタ</div>
+        <div class="car-spec">1999 / 2500cc / 11.4万km / 車検整備付</div>
+        <div class="car-detail">サンルーフ 車高調 Ｔ５Ｒ仕様</div>
+      </div>
+    </a>
+    <a class="car-card reveal" href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank">
+      <span class="car-arrow">→</span>
+      <div class="car-price"><div class="car-price-num">450</div><div class="car-price-unit">万円（本体435万）</div></div>
+      <img class="car-img" src="https://picture1.goo-net.com/7000540462/30251201/Q/70005404623025120100200.jpg" alt="クレスタ"
+           referrerpolicy="no-referrer" onerror="this.src='https://picture1.goo-net.com/7000540462/30251201/P/70005404623025120100200.jpg';this.style.background='#1a1a1a';this.onerror=null;" loading="lazy" decoding="async">
+      <div class="car-info">
+        <div class="car-name">クレスタ</div>
+        <div class="car-spec">1999 / 2500cc / 14.3万km / 車検整備付</div>
+        <div class="car-detail">サンルーフ 後期グリル ナルディステアリング ＢＲＩＤＥセミバケ 砲弾マフラー 車高調</div>
+      </div>
+    </a>
+    <a class="car-card reveal" href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank">
+      <span class="car-arrow">→</span>
+      <div class="car-price"><div class="car-price-num">415</div><div class="car-price-unit">万円（本体405万）</div></div>
+      <img class="car-img" src="https://picture1.goo-net.com/7000540462/30251014/Q/70005404623025101400100.jpg" alt="マーク II ツアラーV"
+           referrerpolicy="no-referrer" onerror="this.src='https://picture1.goo-net.com/7000540462/30251014/P/70005404623025101400100.jpg';this.style.background='#1a1a1a';this.onerror=null;" loading="lazy" decoding="async">
+      <div class="car-info">
+        <div class="car-name">マーク II ツアラーV</div>
+        <div class="car-spec">1998 / 2500cc / 走行不明 / 車検整備付</div>
+        <div class="car-detail">サンルーフ 車高調</div>
+      </div>
+    </a>
+    <a class="car-card reveal" href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank">
+      <span class="car-arrow">→</span>
+      <div class="car-price"><div class="car-price-num">440</div><div class="car-price-unit">万円（本体425万）</div></div>
+      <img class="car-img" src="https://picture1.goo-net.com/7000540462/30250624/Q/70005404623025062400100.jpg" alt="マーク II ツアラーV"
+           referrerpolicy="no-referrer" onerror="this.src='https://picture1.goo-net.com/7000540462/30250624/P/70005404623025062400100.jpg';this.style.background='#1a1a1a';this.onerror=null;" loading="lazy" decoding="async">
+      <div class="car-info">
+        <div class="car-name">マーク II ツアラーV</div>
+        <div class="car-spec">1999 / 2500cc / 走行不明 / 車検整備付</div>
+        <div class="car-detail">前期 サンルーフ ４連メーター 新品ＭＴミッション ハイフロータービン</div>
+      </div>
+    </a>
+    <a class="car-card wide reveal" href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank">
+      <span class="car-arrow">→</span>
+      <div class="car-price"><div class="car-price-num">460</div><div class="car-price-unit">万円（本体445万）</div></div>
+      <img class="car-img" src="https://picture1.goo-net.com/7000540462/30250620/Q/70005404623025062000200.jpg" alt="チェイサー ツアラーV"
+           referrerpolicy="no-referrer" onerror="this.src='https://picture1.goo-net.com/7000540462/30250620/P/70005404623025062000200.jpg';this.style.background='#1a1a1a';this.onerror=null;" loading="lazy" decoding="async">
+      <div class="car-info">
+        <div class="car-name">チェイサー ツアラーV</div>
+        <div class="car-spec">1999 / 2500cc / 9.0万km / 車検整備付</div>
+        <div class="car-detail">グランドパッケージ サンルーフ ＴＲＤメーター 新品ＭＴミッション ３連メーター 車高調 同色オールペン</div>
+      </div>
+    </a>
+    <a class="car-card reveal" href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank">
+      <span class="car-arrow">→</span>
+      <div class="car-price"><div class="car-price-num">460</div><div class="car-price-unit">万円（本体450万）</div></div>
+      <img class="car-img" src="https://picture1.goo-net.com/7000540462/30250620/Q/70005404623025062000100.jpg" alt="マーク II ツアラーV"
+           referrerpolicy="no-referrer" onerror="this.src='https://picture1.goo-net.com/7000540462/30250620/P/70005404623025062000100.jpg';this.style.background='#1a1a1a';this.onerror=null;" loading="lazy" decoding="async">
+      <div class="car-info">
+        <div class="car-name">マーク II ツアラーV</div>
+        <div class="car-spec">1999 / 2500cc / 19.0万km / 車検整備付</div>
+        <div class="car-detail">サンルーフ 新品ＭＴミッション 記録簿 車高調</div>
+      </div>
+    </a>
+    <a class="car-card reveal" href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank">
+      <span class="car-arrow">→</span>
+      <div class="car-price"><div class="car-price-num">450</div><div class="car-price-unit">万円（本体435万）</div></div>
+      <img class="car-img" src="https://picture1.goo-net.com/7000540462/30250429/Q/70005404623025042900100.jpg" alt="クレスタ"
+           referrerpolicy="no-referrer" onerror="this.src='https://picture1.goo-net.com/7000540462/30250429/P/70005404623025042900100.jpg';this.style.background='#1a1a1a';this.onerror=null;" loading="lazy" decoding="async">
+      <div class="car-info">
+        <div class="car-name">クレスタ</div>
+        <div class="car-spec">1997 / 2500cc / 11.0万km / なし</div>
+        <div class="car-detail">サンルーフ ５速公認 Ｄｅｆｉ３連メーター ＲＥＣＡＲＯセミバケ 砲弾マフラー 強化クラッチ マニュアルコンピューター</div>
+      </div>
+    </a>
+    <a class="car-card reveal" href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank">
+      <span class="car-arrow">→</span>
+      <div class="car-price"><div class="car-price-num">400</div><div class="car-price-unit">万円（本体385万）</div></div>
+      <img class="car-img" src="https://picture1.goo-net.com/7000540462/30240910/Q/70005404623024091000100.jpg" alt="マーク II ツアラーV"
+           referrerpolicy="no-referrer" onerror="this.src='https://picture1.goo-net.com/7000540462/30240910/P/70005404623024091000100.jpg';this.style.background='#1a1a1a';this.onerror=null;" loading="lazy" decoding="async">
+      <div class="car-info">
+        <div class="car-name">マーク II ツアラーV</div>
+        <div class="car-spec">1996 / 2500cc / 9.6万km / 車検2026年05月</div>
+        <div class="car-detail">前期 サンルーフ ＷＯＲＫ ＥＭＯＴＩＯＮ ＣＲ極 車高調 純正エアロ 純正スポイラー 社外マフラー 新品ＭＴ</div>
+      </div>
+    </a>
+    <a class="car-card reveal" href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank">
+      <span class="car-arrow">→</span>
+      <div class="car-price"><div class="car-price-num">565</div><div class="car-price-unit">万円（本体550万）</div></div>
+      <img class="car-img" src="https://picture1.goo-net.com/7000540462/30240318/Q/70005404623024031800200.jpg" alt="チェイサー ツアラーV"
+           referrerpolicy="no-referrer" onerror="this.src='https://picture1.goo-net.com/7000540462/30240318/P/70005404623024031800200.jpg';this.style.background='#1a1a1a';this.onerror=null;" loading="lazy" decoding="async">
+      <div class="car-info">
+        <div class="car-name">チェイサー ツアラーV</div>
+        <div class="car-spec">2001 / 2500cc / 10.0万km / なし</div>
+        <div class="car-detail">サンルーフ 純正ＭＴ 新品車高調 新品ＣＲ極 新品前置きインタークーラー 新品ラジエーター</div>
+      </div>
+    </a>
+  </div>
+  <!-- VEHICLE_DATA_END -->
+
+  <div style="text-align:center; margin-top:48px;" class="reveal">
+    <a href="https://www.goo-net.com/usedcar_shop/0540462/stock.html" target="_blank" class="btn-primary" style="display:inline-flex;">
+      goo-netで全台確認する
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <p class="section-label reveal">Our Services</p>
+  <h2 class="section-title reveal">サービス内容</h2>
+  <div class="services-grid">
+    <div class="service-item reveal">
+      <div class="service-num">01</div>
+      <div class="service-icon">🚗</div>
+      <div class="service-name">中古車販売・買取</div>
+      <p class="service-text">JZX系を中心としたスポーツカーの販売・買取。在庫は随時更新。お探しの車のご相談もお気軽に。</p>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-num">02</div>
+      <div class="service-icon">⚙️</div>
+      <div class="service-name">エンジンスワップ</div>
+      <p class="service-text">エンジンスワップに豊富な実績。2JZ-GTE等のエンジン換装作業をご提供します。</p>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-num">03</div>
+      <div class="service-icon">🔧</div>
+      <div class="service-name">チューニング・カスタム</div>
+      <p class="service-text">スポーツカーのチューニング全般。マフラー交換・足回り調整・エクステリアカスタムなど幅広く対応。</p>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-num">04</div>
+      <div class="service-icon">🛡️</div>
+      <div class="service-name">車検・ボディー修正</div>
+      <p class="service-text">車検・ボディー修正・ペイント・ドライブレコーダー取付など、車に関するご要望に幅広く対応します。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left">
+    <p class="section-label reveal">About Us</p>
+    <h2 class="section-title reveal">GRID</h2>
+    <div class="about-kv reveal">
+      <div class="about-kv-item">
+        <div class="about-kv-num">17<span>台</span></div>
+        <div class="about-kv-label">在庫台数</div>
+      </div>
+      <div class="about-kv-item">
+        <div class="about-kv-num">4.9<span>★</span></div>
+        <div class="about-kv-label">Goo-net評価</div>
+      </div>
+      <div class="about-kv-item">
+        <div class="about-kv-num">46<span>件</span></div>
+        <div class="about-kv-label">口コミ数</div>
+      </div>
+    </div>
+    <p class="about-body reveal">
+      スポーツカーチューニング、ボディー修正、エンジンスワップ等をメインに行っています。
+      エンジンスワップやスノーオフロード対応など、
+      少し変わった一台でもご対応できるのが強みです。<br><br>
+      goo-netのレビュー評価4.9という高い顧客満足度を誇り、ご購入後もお客様に
+      喜んでいただける丁寧な対応を心がけています。
+    </p>
+  </div>
+  <div class="about-right">
+    <p class="section-label reveal">Company Info</p>
+    <h2 class="section-title reveal" style="font-size:40px;">会社情報</h2>
+    <table class="about-table reveal">
+      <tr>
+        <td>店舗名</td>
+        <td>GRID（グリッド）<br><small style="color:var(--gray); font-size:10px;">Powered by S-plus co.,ltd</small></td>
+      </tr>
+      <tr>
+        <td>所在地</td>
+        <td>〒362-0807<br>埼玉県北足立郡伊奈町寿１－３４０</td>
+      </tr>
+      <tr>
+        <td>TEL</td>
+        <td>048-779-8836<br><small style="color:var(--gray); font-size:10px;">電話は24時間対応</small></td>
+      </tr>
+      <tr>
+        <td>営業時間</td>
+        <td>10:00 〜 19:00<br><small style="color:var(--gray); font-size:10px;">来店の際は事前にご連絡ください</small></td>
+      </tr>
+      <tr>
+        <td>定休日</td>
+        <td>日曜日<br><small style="color:var(--gray); font-size:10px;">電話は24時間対応致します</small></td>
+      </tr>
+      <tr>
+        <td>取扱業務</td>
+        <td>中古車販売・買取<br>スポーツカーチューニング<br>エンジンスワップ<br>車検・ボディー修正・ペイント</td>
+      </tr>
+    </table>
+    <div style="margin-top:32px;" class="reveal">
+      <a href="https://www.goo-net.com/usedcar_shop/0540462/detail.html" target="_blank" class="btn-secondary" style="display:inline-flex; gap:10px; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; padding:14px 28px;">
+        goo-netで詳細を見る →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left">
+    <p class="section-label reveal">Contact</p>
+    <h2 class="section-title reveal">お問い合わせ</h2>
+    <p style="font-size:13px; color:var(--gray); line-height:1.9; margin-bottom:0;" class="reveal">
+      在庫についてのご質問、買取・下取りのご相談、<br>
+      チューニングのお見積もりなど、お気軽にどうぞ。
+    </p>
+    <div class="contact-details reveal">
+      <div>
+        <div class="contact-detail-label">電話番号（通話料無料）</div>
+        <div class="contact-tel">048-779-8836</div>
+        <div class="contact-detail-sub">電話は24時間対応</div>
+      </div>
+      <div>
+        <div class="contact-detail-label">営業時間</div>
+        <div class="contact-detail-value">10:00 〜 19:00</div>
+        <div class="contact-detail-sub">定休日：日曜日 / 来店の際は事前にご連絡ください</div>
+      </div>
+      <div>
+        <div class="contact-detail-label">所在地</div>
+        <div class="contact-detail-value" style="font-size:14px;">埼玉県北足立郡伊奈町寿１－３４０</div>
+        <div class="contact-detail-sub">〒362-0807</div>
+      </div>
+    </div>
+    <!-- SNS -->
+    <div class="sns-bar reveal">
+      <a href="https://www.instagram.com/matsuihidetoshi/" target="_blank" class="sns-btn ig">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+        Instagram
+      </a>
+      <a href="https://x.com/age01207" target="_blank" class="sns-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        X (Twitter)
+      </a>
+    </div>
+    <div class="map-embed reveal">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d500!2d139.602212!3d36.008077!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzYuMDA4MDc3LCAxMzkuNjAyMjEy!5e0!3m2!1sja!2sjp!4v1711634800000!5m2!1sja!2sjp"
+        width="100%" height="240" style="border:0;display:block;"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="GRID 所在地マップ"></iframe>
+      <a href="https://www.google.com/maps?q=36.008077,139.602212" target="_blank" class="map-open-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Google マップで開く
+      </a>
+    </div>
+  </div>
+  <div class="contact-right">
+    <p class="section-label reveal">Inquiry Form</p>
+    <h2 class="section-title reveal" style="font-size:40px;">お問合せフォーム</h2>
+    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">お名前 *</label>
+          <input type="text" id="name" placeholder="山田 太郎" required>
+        </div>
+        <div class="form-group">
+          <label for="tel">電話番号</label>
+          <input type="tel" id="tel" placeholder="090-xxxx-xxxx">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">メールアドレス *</label>
+        <input type="email" id="email" placeholder="yourname@example.com" required>
+      </div>
+      <div class="form-group">
+        <label for="subject">お問い合わせ種別</label>
+        <select id="subject">
+          <option value="">選択してください</option>
+          <option>在庫車両について</option>
+          <option>お探しの車について（在庫問い合わせ）</option>
+          <option>買取・下取りについて</option>
+          <option>チューニング・カスタムについて</option>
+          <option>エンジンスワップについて</option>
+          <option>車検・修理について</option>
+          <option>その他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="car">ご希望の車種・グレード（任意）</label>
+        <input type="text" id="car" placeholder="例：チェイサー ツアラーV JZX100 など">
+      </div>
+      <div class="form-group">
+        <label for="message">お問い合わせ内容 *</label>
+        <textarea id="message" placeholder="ご質問・ご相談内容をご記入ください" required></textarea>
+      </div>
+      <button type="submit" class="btn-submit">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        送信する
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">
+    <svg height="28" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible;">
+      <defs>
+        <linearGradient id="footGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#888"/>
+          <stop offset="100%" style="stop-color:#555"/>
+        </linearGradient>
+      </defs>
+      <g transform="skewX(-10)">
+        <text x="3" y="30" font-family="'Bebas Neue', Impact, sans-serif" font-size="36" font-weight="900" fill="url(#footGrad)" letter-spacing="2">GRID</text>
+      </g>
+    </svg>
+  </div>
+  <p class="footer-copy">© 2026 GRID — 埼玉県伊奈町 スポーツカー専門店</p>
+  <div class="footer-right">
+    <div class="footer-sns">
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/matsuihidetoshi/" target="_blank" class="ig" title="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+      <!-- X (Twitter) -->
+      <a href="https://x.com/age01207" target="_blank" title="X (Twitter)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      </a>
+    </div>
+    <div class="footer-links">
+      <a href="#inventory">在庫車両</a>
+      <a href="#services">サービス</a>
+      <a href="#about">会社情報</a>
+      <a href="#contact">お問い合わせ</a>
+      <a href="https://www.goo-net.com/usedcar_shop/0540462/detail.html" target="_blank">goo-net</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Hamburger menu
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.querySelector('.nav-hamburger');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+}
+// スクロールで閉じる
+document.addEventListener('scroll', () => {
+  const menu = document.getElementById('mobileMenu');
+  if (menu && menu.classList.contains('open')) toggleMenu();
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+reveals.forEach(el => observer.observe(el));
+
+// Form submit
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-submit');
+  btn.textContent = '✓ 送信しました。ありがとうございます。';
+  btn.style.background = '#1a6b3c';
+  btn.disabled = true;
+}
+</script>
+</body>
+</html>
